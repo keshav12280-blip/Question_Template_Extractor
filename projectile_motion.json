@@ -1,0 +1,98 @@
+{
+  "template_id": "physics_projectile_motion_001",
+
+  "subject": "Physics",
+
+  "chapter": "Projectile Motion",
+
+  "concept": "Maximum Height and Range",
+
+  "question_template": {
+    "text": "A projectile is launched with velocity @s0 at an angle @s1 with the horizontal. Find the maximum height attained."
+  },
+
+  "generated_values": {
+    "s0": 20,
+    "s1": 45,
+    "s2": 9.8
+  },
+
+  "variables": [
+
+    {
+      "name": "s0",
+      "type": "integer",
+      "role": "initial_velocity",
+
+      "constraints": {
+        "min": 5,
+        "max": 100,
+        "allowed_units": ["m/s"],
+        "non_zero": true
+      }
+    },
+
+    {
+      "name": "s1",
+      "type": "integer",
+      "role": "projection_angle",
+
+      "constraints": {
+        "min": 5,
+        "max": 85,
+        "allowed_units": ["degree"]
+      }
+    },
+
+    {
+      "name": "s2",
+      "type": "float",
+      "role": "gravitational_acceleration",
+
+      "constraints": {
+        "min": 9.8,
+        "max": 10,
+        "allowed_units": ["m/s^2"]
+      }
+    }
+  ],
+
+  "global_constraints": [
+
+    {
+      "type": "physics_equation",
+      "expression": "H = (u^2 * sin(theta)^2)/(2*g)"
+    },
+
+    {
+      "type": "validity",
+      "expression": "0 < theta < 90"
+    }
+  ],
+
+  "image_template": {
+    "type": "svg",
+
+    "objects": [
+
+      {
+        "shape": "projectile_path"
+      },
+
+      {
+        "shape": "velocity_vector",
+        "value": "@s0"
+      },
+
+      {
+        "shape": "angle",
+        "value": "@s1"
+      }
+    ]
+  },
+
+  "answer_template": {
+    "formula": "(u^2 * sin(theta)^2)/(2*g)",
+    "correct_answer": "@dynamic"
+  }
+}
