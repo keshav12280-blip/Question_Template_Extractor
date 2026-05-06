@@ -1,0 +1,160 @@
+{
+  "template_id": "mechanics_inclined_plane_static_friction_min_force",
+
+  "subject": "Physics",
+
+  "chapter": "Laws of Motion",
+
+  "concept": "Static Friction on Inclined Plane",
+
+  "question_template": {
+    "text": "A block of mass @s0 is placed on a rough inclined plane of inclination @s1. The coefficient of static friction between the block and the plane is @s2. The minimum force @s3 acting upward along the plane that prevents the block from sliding down is:"
+  },
+
+  "generated_values": {
+    "@s0": "m",
+    "@s1": "theta",
+    "@s2": "mu",
+    "@s3": "F"
+  },
+
+  "sampled_variables": {
+    "m": 5,
+    "theta": 30,
+    "mu": 0.5,
+    "F": 3.3
+  },
+
+  "variables": [
+    {
+      "name": "m",
+      "type": "mass",
+      "role": "block_mass",
+      "range": [1, 20],
+      "sampled_value": 5
+    },
+
+    {
+      "name": "theta",
+      "type": "angle",
+      "role": "inclination_angle",
+      "range": [10, 60],
+      "sampled_value": 30
+    },
+
+    {
+      "name": "mu",
+      "type": "coefficient_of_friction",
+      "role": "static_friction_coefficient",
+      "range": [0.1, 1],
+      "sampled_value": 0.5
+    }
+  ],
+
+  "constraints": [
+    {
+      "type": "normal_force",
+      "expression": "N = mgcos(theta)"
+    },
+
+    {
+      "type": "friction_relation",
+      "expression": "f = mu*N"
+    },
+
+    {
+      "type": "equilibrium_condition",
+      "expression": "F + f = mgsin(theta)"
+    }
+  ],
+
+  "computed_equations": [
+    {
+      "step": 1,
+      "equation": "N = mgcos(theta)"
+    },
+
+    {
+      "step": 2,
+      "equation": "f = mu*mgcos(theta)"
+    },
+
+    {
+      "step": 3,
+      "equation": "F + mu*mgcos(theta) = mgsin(theta)"
+    },
+
+    {
+      "step": 4,
+      "equation": "F = mgsin(theta) - mu*mgcos(theta)"
+    }
+  ],
+
+  "image_template": {
+    "type": "dynamic_inclined_plane_diagram",
+
+    "objects": [
+      {
+        "object": "inclined_plane",
+        "properties": {
+          "angle": "theta"
+        }
+      },
+
+      {
+        "object": "block",
+        "properties": {
+          "mass": "m"
+        }
+      },
+
+      {
+        "object": "force_arrow",
+        "properties": {
+          "label": "F",
+          "direction": "upward_along_plane"
+        }
+      }
+    ]
+  },
+
+  "options": [
+    {
+      "id": "A",
+      "value": "mg sin(theta) - mu mg cos(theta)",
+      "is_correct": true
+    },
+
+    {
+      "id": "B",
+      "value": "mg sin(theta) + mu mg cos(theta)",
+      "is_correct": false
+    },
+
+    {
+      "id": "C",
+      "value": "mg sin(theta)",
+      "is_correct": false
+    },
+
+    {
+      "id": "D",
+      "value": "mu mg cos(theta)",
+      "is_correct": false
+    }
+  ],
+
+  "answer_template": {
+    "formula": "F = mgsin(theta) - mu mg cos(theta)",
+    "expanded_formula": "F = 5*9.8*sin(30) - 0.5*5*9.8*cos(30)",
+    "correct_answer": "mg sin(theta) - mu mg cos(theta)"
+  },
+
+  "solution_explanation": [
+    "Resolve gravitational force along incline.",
+    "Compute normal reaction.",
+    "Calculate limiting friction.",
+    "Apply equilibrium condition.",
+    "Derive minimum force expression."
+  ]
+}

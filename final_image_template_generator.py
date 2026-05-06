@@ -17,6 +17,7 @@ def encode_image(image_path):
     with open(image_path, "rb") as f:
         return base64.b64encode(f.read()).decode("utf-8")
 
+
 # ==========================================
 # UNIVERSAL TEMPLATE GENERATOR
 # ==========================================
@@ -26,31 +27,65 @@ def generate_template_json(image_path, optional_question_text=""):
     image_base64 = encode_image(image_path)
 
     prompt = f"""
-You are an expert educational multimodal reasoning system.
+You are an expert educational multimodal reasoning engine.
 
 Your task is to analyze ANY educational question image
-(JEE, NEET, geometry, graph theory, circuits, optics, mechanics etc.)
+(JEE, NEET, mechanics, optics, circuits, geometry, algebra, graph theory etc.)
 
-You must generate a UNIVERSAL PARAMETERIZED JSON TEMPLATE.
+You must generate a FULLY PARAMETERIZED JSON TEMPLATE.
 
-IMPORTANT GOALS:
-1. Detect the subject automatically
-2. Detect the concept automatically
-3. Extract all variables from image/text
-4. Replace actual values with symbolic placeholders like:
-   @s0, @s1, @s2
-5. Generate mathematical/physics constraints
-6. Generate image structure template
-7. Generate formula template
-8. Ensure generated variables can later be changed dynamically
-9. Return STRICT JSON ONLY
+STRICTLY RETURN JSON ONLY.
 
-The JSON format MUST follow this structure:
+==================================================
+GOALS
+==================================================
+
+1. Detect:
+   - subject
+   - chapter
+   - concept
+
+2. Extract:
+   - variables
+   - equations
+   - constraints
+   - diagram structure
+
+3. Replace actual values using placeholders:
+   @s0, @s1, @s2 ...
+
+4. Generate:
+   - sampled variables
+   - computed equations
+   - options
+   - detailed solution explanation
+
+5. Make template reusable for dynamic generation.
+
+==================================================
+IMPORTANT RULES
+==================================================
+
+- STRICT JSON ONLY
+- NO markdown
+- NO explanation outside JSON
+- Every numeric value must become parameterized
+- Include symbolic + sampled values
+- Infer formulas automatically
+- Infer physics laws automatically
+- Infer geometry/circuit/optics constraints automatically
+
+==================================================
+OUTPUT FORMAT
+==================================================
 
 {{
   "template_id": "",
+
   "subject": "",
+
   "chapter": "",
+
   "concept": "",
 
   "question_template": {{
@@ -59,12 +94,15 @@ The JSON format MUST follow this structure:
 
   "generated_values": {{}},
 
+  "sampled_variables": {{}},
+
   "variables": [
     {{
       "name": "",
       "type": "",
       "role": "",
-      "range": []
+      "range": [],
+      "sampled_value": ""
     }}
   ],
 
@@ -75,35 +113,89 @@ The JSON format MUST follow this structure:
     }}
   ],
 
+  "computed_equations": [
+    {{
+      "step": 1,
+      "equation": ""
+    }}
+  ],
+
   "image_template": {{
-    "type": "svg",
+    "type": "",
     "objects": []
   }},
 
+  "options": [
+    {{
+      "id": "A",
+      "value": "",
+      "is_correct": false
+    }}
+  ],
+
   "answer_template": {{
     "formula": "",
+    "expanded_formula": "",
     "correct_answer": ""
-  }}
+  }},
+
+  "solution_explanation": []
 }}
 
-IMPORTANT RULES:
-- Replace all numeric values using @s0, @s1 etc
-- Infer constraints automatically
-- If geometry:
-    infer angle constraints
-- If circuits:
-    infer equivalent circuit constraints
-- If optics:
-    infer Snell law / prism constraints
-- If graph:
-    infer node-edge constraints
-- If mechanics:
-    infer Newton law constraints
-- Generate reusable dynamic template
-- STRICT JSON ONLY
-- NO explanation outside JSON
+==================================================
+SPECIAL INSTRUCTIONS
+==================================================
 
-Optional question text:
+IF PHYSICS:
+- infer laws automatically
+- include derived equations
+- include stepwise solving
+
+IF OPTICS:
+- include Snell's law
+- prism relation
+- critical angle equations
+- TIR conditions
+
+IF MECHANICS:
+- include Newton laws
+- force balance equations
+- friction equations
+
+IF CIRCUITS:
+- include KVL/KCL
+- equivalent resistance rules
+
+IF GEOMETRY:
+- include angle constraints
+- similarity relations
+
+==================================================
+VARIABLE RULES
+==================================================
+
+- Add BOTH symbolic and sampled values
+- Ensure sampled values satisfy constraints
+- Generate realistic ranges
+- Include intermediate variables
+
+==================================================
+OPTIONS RULES
+==================================================
+
+- Generate 4 MCQ options
+- Exactly one correct answer
+
+==================================================
+SOLUTION RULES
+==================================================
+
+- Add stepwise equations
+- Add human-readable explanation
+- Add expanded formula using sampled values
+
+==================================================
+Optional Question Text:
 {optional_question_text}
 """
 
@@ -112,6 +204,8 @@ Optional question text:
         model="gpt-4.1",
 
         temperature=0,
+
+        response_format={"type": "json_object"},
 
         messages=[
             {
@@ -133,6 +227,7 @@ Optional question text:
     )
 
     return json.loads(response.choices[0].message.content)
+
 
 # ==========================================
 # MAIN

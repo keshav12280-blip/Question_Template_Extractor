@@ -1,0 +1,157 @@
+{
+  "template_id": "circuits_equivalent_capacitance_parallel_series",
+
+  "subject": "Physics",
+
+  "chapter": "Electrostatics and Capacitance",
+
+  "concept": "Equivalent Capacitance in Mixed Capacitor Network",
+
+  "question_template": {
+    "text": "In the given circuit, the equivalent capacitance between @s0 and @s1 is:"
+  },
+
+  "generated_values": {
+    "@s0": "A",
+    "@s1": "B",
+    "@s2": "2uF",
+    "@s3": "4uF",
+    "@s4": "4uF"
+  },
+
+  "sampled_variables": {
+    "C1": 2,
+    "C2": 4,
+    "C3": 4,
+    "Ceq": 1.33
+  },
+
+  "variables": [
+    {
+      "name": "C1",
+      "type": "capacitance",
+      "role": "left_capacitor",
+      "range": [1, 10],
+      "sampled_value": 2
+    },
+
+    {
+      "name": "C2",
+      "type": "capacitance",
+      "role": "upper_capacitor",
+      "range": [1, 10],
+      "sampled_value": 4
+    },
+
+    {
+      "name": "C3",
+      "type": "capacitance",
+      "role": "right_capacitor",
+      "range": [1, 10],
+      "sampled_value": 4
+    }
+  ],
+
+  "constraints": [
+    {
+      "type": "short_circuit_condition",
+      "expression": "Voltage_across_C2 = 0"
+    },
+
+    {
+      "type": "series_capacitance",
+      "expression": "1/Ceq = 1/C1 + 1/C3"
+    }
+  ],
+
+  "computed_equations": [
+    {
+      "step": 1,
+      "equation": "C2 is short-circuited"
+    },
+
+    {
+      "step": 2,
+      "equation": "1/Ceq = 1/2 + 1/4"
+    },
+
+    {
+      "step": 3,
+      "equation": "1/Ceq = 3/4"
+    },
+
+    {
+      "step": 4,
+      "equation": "Ceq = 4/3 uF"
+    }
+  ],
+
+  "image_template": {
+    "type": "dynamic_circuit_diagram",
+
+    "objects": [
+      {
+        "object": "capacitor",
+        "properties": {
+          "label": "C1",
+          "value": "2uF"
+        }
+      },
+
+      {
+        "object": "capacitor",
+        "properties": {
+          "label": "C2",
+          "value": "4uF"
+        }
+      },
+
+      {
+        "object": "capacitor",
+        "properties": {
+          "label": "C3",
+          "value": "4uF"
+        }
+      }
+    ]
+  },
+
+  "options": [
+    {
+      "id": "A",
+      "value": "2uF",
+      "is_correct": false
+    },
+
+    {
+      "id": "B",
+      "value": "4uF",
+      "is_correct": false
+    },
+
+    {
+      "id": "C",
+      "value": "6uF",
+      "is_correct": false
+    },
+
+    {
+      "id": "D",
+      "value": "8uF",
+      "is_correct": false
+    }
+  ],
+
+  "answer_template": {
+    "formula": "1/Ceq = 1/C1 + 1/C3",
+    "expanded_formula": "1/Ceq = 1/2 + 1/4",
+    "correct_answer": "4/3uF"
+  },
+
+  "solution_explanation": [
+    "The upper capacitor is bypassed due to direct conducting wire.",
+    "Only two capacitors remain in series.",
+    "Apply series capacitance formula.",
+    "Final equivalent capacitance is 4/3uF."
+  ]
+}
