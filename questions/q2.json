@@ -1,0 +1,164 @@
+{
+  "template_id": "optics_prism_total_internal_reflection_incidence_angle",
+
+  "subject": "Physics",
+
+  "chapter": "Ray Optics and Optical Instruments",
+
+  "concept": "Prism Refraction and Total Internal Reflection",
+
+  "question_template": {
+    "text": "A ray of light is incident on the face @s0 of a prism @s1. The refractive index of the prism is @s2. The ray undergoes total internal reflection at face @s3. The angle of incidence @s4 is:"
+  },
+
+  "generated_values": {
+    "@s0": "AB",
+    "@s1": "ABC",
+    "@s2": "sqrt(3)",
+    "@s3": "AC",
+    "@s4": "i"
+  },
+
+  "sampled_variables": {
+    "mu": 1.732,
+    "A": 60,
+    "critical_angle": 35,
+    "r1": 25,
+    "r2": 35,
+    "i": 45
+  },
+
+  "variables": [
+    {
+      "name": "mu",
+      "type": "refractive_index",
+      "role": "prism_refractive_index",
+      "range": [1, 3],
+      "sampled_value": 1.732
+    },
+
+    {
+      "name": "A",
+      "type": "angle",
+      "role": "apex_angle",
+      "range": [30, 90],
+      "sampled_value": 60
+    },
+
+    {
+      "name": "i",
+      "type": "angle",
+      "role": "angle_of_incidence",
+      "range": [0, 90],
+      "sampled_value": 45
+    }
+  ],
+
+  "constraints": [
+    {
+      "type": "critical_angle_relation",
+      "expression": "sin(c) = 1/mu"
+    },
+
+    {
+      "type": "prism_relation",
+      "expression": "r1 + r2 = A"
+    },
+
+    {
+      "type": "snells_law",
+      "expression": "sin(i) = mu*sin(r1)"
+    }
+  ],
+
+  "computed_equations": [
+    {
+      "step": 1,
+      "equation": "sin(c) = 1/sqrt(3)"
+    },
+
+    {
+      "step": 2,
+      "equation": "c = 35 deg"
+    },
+
+    {
+      "step": 3,
+      "equation": "r1 + 35 = 60"
+    },
+
+    {
+      "step": 4,
+      "equation": "r1 = 25 deg"
+    },
+
+    {
+      "step": 5,
+      "equation": "sin(i) = sqrt(3)*sin(25)"
+    },
+
+    {
+      "step": 6,
+      "equation": "i = 45 deg"
+    }
+  ],
+
+  "image_template": {
+    "type": "dynamic_prism_diagram",
+
+    "objects": [
+      {
+        "object": "triangle_prism",
+        "properties": {
+          "vertices": ["A", "B", "C"]
+        }
+      },
+
+      {
+        "object": "incident_ray",
+        "properties": {
+          "incident_face": "AB"
+        }
+      }
+    ]
+  },
+
+  "options": [
+    {
+      "id": "A",
+      "value": "45deg",
+      "is_correct": true
+    },
+
+    {
+      "id": "B",
+      "value": "60deg",
+      "is_correct": false
+    },
+
+    {
+      "id": "C",
+      "value": "75deg",
+      "is_correct": false
+    },
+
+    {
+      "id": "D",
+      "value": "30deg",
+      "is_correct": false
+    }
+  ],
+
+  "answer_template": {
+    "formula": "sin(i) = mu*sin(A-c)",
+    "expanded_formula": "sin(i) = sqrt(3)*sin(25)",
+    "correct_answer": "45deg"
+  },
+
+  "solution_explanation": [
+    "Compute critical angle using refractive index.",
+    "Use prism angle relation.",
+    "Apply Snell's law at first surface.",
+    "Solve for angle of incidence."
+  ]
+}

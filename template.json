@@ -1,0 +1,83 @@
+{
+  "question_template": {
+    "text": "In the given circuit, the equivalent capacitance between A and B is"
+  },
+
+  "variables": [
+
+    {
+      "name": "s0",
+
+      "type": "integer",
+
+      "constraints": {
+        "min": 1,
+        "max": 10
+      }
+    },
+
+    {
+      "name": "s1",
+
+      "type": "integer",
+
+      "constraints": {
+        "min": 1,
+        "max": 10
+      }
+    },
+
+    {
+      "name": "s2",
+
+      "type": "integer",
+
+      "constraints": {
+        "min": 1,
+        "max": 10
+      }
+    }
+  ],
+
+  "image_template": {
+
+    "editable_regions": [
+
+      {
+        "variable": "s0",
+
+        "x": 955,
+        "y": 135,
+
+        "width": 105,
+        "height": 45,
+
+        "suffix": " μF"
+      },
+
+      {
+        "variable": "s1",
+
+        "x": 1145,
+        "y": 40,
+
+        "width": 105,
+        "height": 45,
+
+        "suffix": " μF"
+      },
+
+      {
+        "variable": "s2",
+
+        "x": 1345,
+        "y": 135,
+
+        "width": 105,
+        "height": 45,
+
+        "suffix": " μF"
+      }
+    ]
+  }
+}
