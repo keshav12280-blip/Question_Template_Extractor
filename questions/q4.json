@@ -1,0 +1,194 @@
+{
+  "template_id": "projectile_motion_kinetic_energy_ratio",
+
+  "subject": "Physics",
+
+  "chapter": "Projectile Motion",
+
+  "concept": "Variation of Kinetic Energy in Projectile Motion",
+
+  "question_template": {
+    "text": "An object is projected with kinetic energy @s0 from a point @s1 at an angle @s2 with the horizontal. The ratio of the difference in kinetic energies at points @s3 and @s4 to that at point @s1, in the absence of air friction is:"
+  },
+
+  "generated_values": {
+    "@s0": "K",
+    "@s1": "A",
+    "@s2": "60deg",
+    "@s3": "B",
+    "@s4": "C"
+  },
+
+  "sampled_variables": {
+    "theta": 60,
+    "initial_KE": 100,
+    "KE_B": 25,
+    "KE_C": 100,
+    "difference": 75,
+    "ratio": "3:4"
+  },
+
+  "variables": [
+    {
+      "name": "theta",
+      "type": "angle",
+      "role": "projection_angle",
+      "range": [10, 80],
+      "sampled_value": 60
+    },
+
+    {
+      "name": "K",
+      "type": "energy",
+      "role": "initial_kinetic_energy",
+      "range": [1, 1000],
+      "sampled_value": 100
+    },
+
+    {
+      "name": "KE_B",
+      "type": "energy",
+      "role": "kinetic_energy_at_highest_point",
+      "range": [1, 1000],
+      "sampled_value": 25
+    }
+  ],
+
+  "constraints": [
+    {
+      "type": "horizontal_velocity_constant",
+      "expression": "vx = u*cos(theta)"
+    },
+
+    {
+      "type": "kinetic_energy_relation",
+      "expression": "KE = (1/2)m(vx^2 + vy^2)"
+    },
+
+    {
+      "type": "highest_point_condition",
+      "expression": "vy = 0 at point B"
+    },
+
+    {
+      "type": "energy_conservation",
+      "expression": "KE_A = KE_C"
+    }
+  ],
+
+  "computed_equations": [
+    {
+      "step": 1,
+      "equation": "Initial kinetic energy = (1/2)mu^2 = K"
+    },
+
+    {
+      "step": 2,
+      "equation": "At highest point, velocity = u*cos(60)"
+    },
+
+    {
+      "step": 3,
+      "equation": "KE_B = (1/2)m(u*cos60)^2"
+    },
+
+    {
+      "step": 4,
+      "equation": "KE_B = K/4"
+    },
+
+    {
+      "step": 5,
+      "equation": "Difference = K - K/4 = 3K/4"
+    },
+
+    {
+      "step": 6,
+      "equation": "Ratio = 3:4"
+    }
+  ],
+
+  "image_template": {
+    "type": "dynamic_projectile_diagram",
+
+    "objects": [
+      {
+        "object": "projectile_path",
+        "properties": {
+          "shape": "parabolic"
+        }
+      },
+
+      {
+        "object": "launch_point",
+        "properties": {
+          "label": "A"
+        }
+      },
+
+      {
+        "object": "highest_point",
+        "properties": {
+          "label": "B"
+        }
+      },
+
+      {
+        "object": "landing_point",
+        "properties": {
+          "label": "C"
+        }
+      },
+
+      {
+        "object": "angle_marker",
+        "properties": {
+          "value": "60deg"
+        }
+      }
+    ]
+  },
+
+  "options": [
+    {
+      "id": "1",
+      "value": "1:4",
+      "is_correct": false
+    },
+
+    {
+      "id": "2",
+      "value": "2:3",
+      "is_correct": false
+    },
+
+    {
+      "id": "3",
+      "value": "3:4",
+      "is_correct": true
+    },
+
+    {
+      "id": "4",
+      "value": "1:2",
+      "is_correct": false
+    }
+  ],
+
+  "answer_template": {
+    "formula": "KE_B = K*cos^2(theta)",
+    "expanded_formula": "KE_B = K*cos^2(60)",
+    "correct_answer": "3:4"
+  },
+
+  "solution_explanation": [
+    "Initial kinetic energy is K.",
+    "At highest point vertical velocity becomes zero.",
+    "Only horizontal component remains.",
+    "Horizontal velocity = u*cos60.",
+    "Thus KE at B = K/4.",
+    "At C kinetic energy again becomes K.",
+    "Difference = K - K/4 = 3K/4.",
+    "Required ratio = 3:4."
+  ]
+}

@@ -1,0 +1,247 @@
+{
+  "template_id": "optics_biconvex_lens_combination_magnification",
+
+  "subject": "Physics",
+
+  "chapter": "Ray Optics and Optical Instruments",
+
+  "concept": "Equivalent Focal Length and Magnification of Combined Lenses",
+
+  "question_template": {
+    "text": "A biconvex lens is formed by using two thin planoconvex lenses, as shown in the figure. The refractive indices and radii of curved surfaces are given as @s0 and @s1. When an object is placed on the left side of the lens at a distance @s2 from the biconvex lens, the magnification of the image will be:"
+  },
+
+  "generated_values": {
+    "@s0": "mu1 = 1.5, mu2 = 1.2",
+    "@s1": "R1 = 15 cm, R2 = 12 cm",
+    "@s2": "30 cm"
+  },
+
+  "sampled_variables": {
+    "mu1": 1.5,
+    "mu2": 1.2,
+    "R1": 15,
+    "R2": 12,
+    "u": -30,
+    "f1": 30,
+    "f2": 60,
+    "f_equivalent": 20,
+    "v": 60,
+    "magnification": -2
+  },
+
+  "variables": [
+    {
+      "name": "mu1",
+      "type": "refractive_index",
+      "role": "left_planoconvex_lens_refractive_index",
+      "range": [1.1, 2.0],
+      "sampled_value": 1.5
+    },
+
+    {
+      "name": "mu2",
+      "type": "refractive_index",
+      "role": "right_planoconvex_lens_refractive_index",
+      "range": [1.1, 2.0],
+      "sampled_value": 1.2
+    },
+
+    {
+      "name": "R1",
+      "type": "length",
+      "role": "radius_of_curvature_left_surface",
+      "range": [5, 50],
+      "sampled_value": 15
+    },
+
+    {
+      "name": "R2",
+      "type": "length",
+      "role": "radius_of_curvature_right_surface",
+      "range": [5, 50],
+      "sampled_value": 12
+    },
+
+    {
+      "name": "u",
+      "type": "length",
+      "role": "object_distance",
+      "range": [-100, -5],
+      "sampled_value": -30
+    },
+
+    {
+      "name": "f_equivalent",
+      "type": "length",
+      "role": "equivalent_focal_length",
+      "range": [1, 100],
+      "sampled_value": 20
+    },
+
+    {
+      "name": "magnification",
+      "type": "ratio",
+      "role": "linear_magnification",
+      "range": [-10, 10],
+      "sampled_value": -2
+    }
+  ],
+
+  "constraints": [
+    {
+      "type": "lens_maker_formula_planoconvex",
+      "expression": "1/f = (mu - 1)/R"
+    },
+
+    {
+      "type": "equivalent_power",
+      "expression": "1/F = 1/f1 + 1/f2"
+    },
+
+    {
+      "type": "lens_formula",
+      "expression": "1/f = 1/v - 1/u"
+    },
+
+    {
+      "type": "magnification_relation",
+      "expression": "m = v/u"
+    }
+  ],
+
+  "computed_equations": [
+    {
+      "step": 1,
+      "equation": "1/f1 = (1.5 - 1)/15"
+    },
+
+    {
+      "step": 2,
+      "equation": "f1 = 30 cm"
+    },
+
+    {
+      "step": 3,
+      "equation": "1/f2 = (1.2 - 1)/12"
+    },
+
+    {
+      "step": 4,
+      "equation": "f2 = 60 cm"
+    },
+
+    {
+      "step": 5,
+      "equation": "1/F = 1/30 + 1/60"
+    },
+
+    {
+      "step": 6,
+      "equation": "F = 20 cm"
+    },
+
+    {
+      "step": 7,
+      "equation": "1/20 = 1/v - 1/(-30)"
+    },
+
+    {
+      "step": 8,
+      "equation": "1/v = 1/20 - 1/30"
+    },
+
+    {
+      "step": 9,
+      "equation": "v = 60 cm"
+    },
+
+    {
+      "step": 10,
+      "equation": "m = v/u = 60/(-30)"
+    },
+
+    {
+      "step": 11,
+      "equation": "m = -2"
+    }
+  ],
+
+  "image_template": {
+    "type": "dynamic_lens_diagram",
+
+    "objects": [
+      {
+        "object": "biconvex_lens",
+        "properties": {
+          "composition": "two_planoconvex_lenses"
+        }
+      },
+
+      {
+        "object": "left_surface",
+        "properties": {
+          "refractive_index": "1.5",
+          "radius": "15cm"
+        }
+      },
+
+      {
+        "object": "right_surface",
+        "properties": {
+          "refractive_index": "1.2",
+          "radius": "12cm"
+        }
+      },
+
+      {
+        "object": "object",
+        "properties": {
+          "distance": "30cm"
+        }
+      }
+    ]
+  },
+
+  "options": [
+    {
+      "id": "1",
+      "value": "-2",
+      "is_correct": true
+    },
+
+    {
+      "id": "2",
+      "value": "+2.5",
+      "is_correct": false
+    },
+
+    {
+      "id": "3",
+      "value": "-2.5",
+      "is_correct": false
+    },
+
+    {
+      "id": "4",
+      "value": "+2",
+      "is_correct": false
+    }
+  ],
+
+  "answer_template": {
+    "formula": "m = v/u",
+    "expanded_formula": "m = 60/(-30)",
+    "correct_answer": "-2"
+  },
+
+  "solution_explanation": [
+    "Use lens maker formula separately for both plano-convex lenses.",
+    "Compute focal lengths f1 and f2.",
+    "Add powers to get equivalent focal length.",
+    "Apply lens formula using object distance.",
+    "Calculate image distance.",
+    "Use magnification formula m = v/u.",
+    "Final magnification is -2."
+  ]
+}
