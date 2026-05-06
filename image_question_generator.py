@@ -1,3 +1,4 @@
+import os
 import base64
 import json
 from openai import OpenAI
@@ -9,6 +10,8 @@ from sympy import sympify
 
 client = OpenAI()
 
+IMAGE_FOLDER = "questions"
+
 # ==============================
 # IMAGE ENCODER
 # ==============================
@@ -18,7 +21,7 @@ def encode_image(image_path):
         return base64.b64encode(f.read()).decode("utf-8")
 
 # ==============================
-# STEP 1: EXTRACT SCENE FROM IMAGE
+# STEP 1: EXTRACT SCENE
 # ==============================
 
 def extract_scene(image_path, question_text):
@@ -28,9 +31,9 @@ def extract_scene(image_path, question_text):
     prompt = f"""
 You are an expert JEE question diagram extractor.
 
-Read image carefully and extract structured JSON only.
+Read image carefully and return STRICT JSON only.
 
-Return STRICT JSON:
+Format:
 
 {{
   "subject": "",
@@ -45,11 +48,11 @@ Question:
 {question_text}
 
 Rules:
-- detect all visible numbers
+- detect all numbers
 - detect symbols
 - detect physical objects
 - detect relations
-- no explanation outside JSON
+- return JSON only
 """
 
     response = client.chat.completions.create(
@@ -77,7 +80,7 @@ Rules:
     return json.loads(response.choices[0].message.content)
 
 # ==============================
-# STEP 2: SOLVE QUESTION
+# STEP 2: SOLVE
 # ==============================
 
 def solve_question(scene, question_text):
@@ -102,8 +105,8 @@ Return STRICT JSON:
 
 Rules:
 - choose formula automatically
-- solve step by step
-- return only JSON
+- solve carefully
+- return JSON only
 """
 
     response = client.chat.completions.create(
@@ -120,7 +123,7 @@ Rules:
     return json.loads(response.choices[0].message.content)
 
 # ==============================
-# STEP 3: VALIDATE EQUATION USING PYTHON
+# STEP 3: VALIDATE
 # ==============================
 
 def validate_equation(equation):
@@ -132,33 +135,44 @@ def validate_equation(equation):
         return "Validation failed"
 
 # ==============================
-# STEP 4: COMPLETE PIPELINE
+# STEP 4: PROCESS ONE IMAGE
 # ==============================
 
 def process_question(image_path, question_text):
 
-    print("\n--- Extracting Scene ---")
+    print(f"\nProcessing: {image_path}")
+
     scene = extract_scene(image_path, question_text)
 
-    print(json.dumps(scene, indent=2))
-
-    print("\n--- Solving ---")
     solution = solve_question(scene, question_text)
-
-    print(json.dumps(solution, indent=2))
 
     validated = validate_equation(solution["equation"])
 
     final_output = {
+        "image": image_path,
         "scene": scene,
         "solution": solution,
         "validated_result": validated
     }
 
-    print("\n--- FINAL OUTPUT ---")
     print(json.dumps(final_output, indent=2))
 
-    return final_output
+# ==============================
+# STEP 5: BATCH PROCESS ALL IMAGES
+# ==============================
+
+def process_folder():
+
+    for filename in os.listdir(IMAGE_FOLDER):
+
+        if filename.lower().endswith((".png", ".jpg", ".jpeg")):
+
+            image_path = os.path.join(IMAGE_FOLDER, filename)
+
+            # optional manual question text
+            question_text = input(f"\nEnter question text for {filename}: ")
+
+            process_question(image_path, question_text)
 
 # ==============================
 # RUN
@@ -166,7 +180,4 @@ def process_question(image_path, question_text):
 
 if __name__ == "__main__":
 
-    process_question(
-        image_path="question.png",
-        question_text="Find equivalent capacitance between A and B"
-    )
+    process_folder()
