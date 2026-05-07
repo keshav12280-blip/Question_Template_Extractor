@@ -1,0 +1,267 @@
+{
+  "template_id": "mechanics_rotational_shm_rod_spring_frequency_ratio",
+
+  "subject": "Physics",
+
+  "chapter": "Oscillations and Rotational Dynamics",
+
+  "concept": "Angular SHM of Rod with Springs",
+
+  "question_template": {
+    "text": "As shown in the figures, a uniform rod @s0 of length @s1 is hinged at the point @s2 and held vertically between two walls using two massless springs of same spring constant. In configuration 1, the springs are connected at the midpoint and top end of the rod, and the frequency of oscillation is @s3. In configuration 2, both springs are connected at the midpoint of the rod, and the frequency of oscillation is @s4. Ignoring gravity and assuming motion only in the plane of the diagram, the value of @s5/@s6 is:"
+  },
+
+  "generated_values": {
+    "@s0": "OO'",
+    "@s1": "l",
+    "@s2": "O",
+    "@s3": "f1",
+    "@s4": "f2",
+    "@s5": "f1",
+    "@s6": "f2"
+  },
+
+  "sampled_variables": {
+    "l": 2,
+    "k": 100,
+    "m": 5,
+    "I": 6.67,
+    "effective_torque_constant_case1": 500,
+    "effective_torque_constant_case2": 200,
+    "omega1": 8.66,
+    "omega2": 5.48,
+    "frequency_ratio": 1.581
+  },
+
+  "variables": [
+    {
+      "name": "l",
+      "type": "length",
+      "role": "length_of_rod",
+      "range": [0.5, 10],
+      "sampled_value": 2
+    },
+
+    {
+      "name": "k",
+      "type": "spring_constant",
+      "role": "spring_constant",
+      "range": [1, 1000],
+      "sampled_value": 100
+    },
+
+    {
+      "name": "m",
+      "type": "mass",
+      "role": "mass_of_rod",
+      "range": [1, 100],
+      "sampled_value": 5
+    },
+
+    {
+      "name": "I",
+      "type": "moment_of_inertia",
+      "role": "moment_of_inertia_about_hinge",
+      "range": [0.1, 100],
+      "sampled_value": 6.67
+    },
+
+    {
+      "name": "f1",
+      "type": "frequency",
+      "role": "frequency_case_1",
+      "range": [0.1, 100],
+      "sampled_value": 1.38
+    },
+
+    {
+      "name": "f2",
+      "type": "frequency",
+      "role": "frequency_case_2",
+      "range": [0.1, 100],
+      "sampled_value": 0.87
+    }
+  ],
+
+  "constraints": [
+    {
+      "type": "small_angle_approximation",
+      "expression": "sin(theta) ≈ theta"
+    },
+
+    {
+      "type": "angular_shm",
+      "expression": "I*d2(theta)/dt2 + C*theta = 0"
+    },
+
+    {
+      "type": "frequency_relation",
+      "expression": "f = (1/2pi)*sqrt(C/I)"
+    },
+
+    {
+      "type": "restoring_torque",
+      "expression": "tau = -kx*x"
+    },
+
+    {
+      "type": "moment_of_inertia_rod",
+      "expression": "I = ml^2/3"
+    }
+  ],
+
+  "computed_equations": [
+    {
+      "step": 1,
+      "equation": "For small angular displacement theta, horizontal displacement at distance r is r*theta"
+    },
+
+    {
+      "step": 2,
+      "equation": "Restoring force due to spring = k*r*theta"
+    },
+
+    {
+      "step": 3,
+      "equation": "Restoring torque = k*r^2*theta"
+    },
+
+    {
+      "step": 4,
+      "equation": "In Fig.1 springs are attached at r=l and r=l/2"
+    },
+
+    {
+      "step": 5,
+      "equation": "C1 = k*l^2 + k*(l/2)^2"
+    },
+
+    {
+      "step": 6,
+      "equation": "C1 = (5/4)k*l^2"
+    },
+
+    {
+      "step": 7,
+      "equation": "In Fig.2 both springs are attached at r=l/2"
+    },
+
+    {
+      "step": 8,
+      "equation": "C2 = 2*k*(l/2)^2"
+    },
+
+    {
+      "step": 9,
+      "equation": "C2 = (1/2)k*l^2"
+    },
+
+    {
+      "step": 10,
+      "equation": "f1/f2 = sqrt(C1/C2)"
+    },
+
+    {
+      "step": 11,
+      "equation": "f1/f2 = sqrt((5/4)/(1/2))"
+    },
+
+    {
+      "step": 12,
+      "equation": "f1/f2 = sqrt(5/2)"
+    }
+  ],
+
+  "image_template": {
+    "type": "dynamic_rotational_shm_diagram",
+
+    "objects": [
+      {
+        "object": "vertical_rod",
+        "properties": {
+          "length": "l",
+          "hinge_point": "O"
+        }
+      },
+
+      {
+        "object": "spring",
+        "properties": {
+          "configuration": "case_1_top"
+        }
+      },
+
+      {
+        "object": "spring",
+        "properties": {
+          "configuration": "case_1_midpoint"
+        }
+      },
+
+      {
+        "object": "spring",
+        "properties": {
+          "configuration": "case_2_midpoint"
+        }
+      },
+
+      {
+        "object": "wall",
+        "properties": {
+          "position": "left"
+        }
+      },
+
+      {
+        "object": "wall",
+        "properties": {
+          "position": "right"
+        }
+      }
+    ]
+  },
+
+  "options": [
+    {
+      "id": "A",
+      "value": "2",
+      "is_correct": false
+    },
+
+    {
+      "id": "B",
+      "value": "sqrt(2)",
+      "is_correct": false
+    },
+
+    {
+      "id": "C",
+      "value": "sqrt(5/2)",
+      "is_correct": true
+    },
+
+    {
+      "id": "D",
+      "value": "sqrt(2/5)",
+      "is_correct": false
+    }
+  ],
+
+  "answer_template": {
+    "formula": "f1/f2 = sqrt(C1/C2)",
+    "expanded_formula": "sqrt(((5/4)kl^2)/((1/2)kl^2))",
+    "correct_answer": "sqrt(5/2)"
+  },
+
+  "solution_explanation": [
+    "For small angular oscillation, displacement at distance r from hinge is r*theta.",
+    "Spring restoring force becomes proportional to r*theta.",
+    "Restoring torque is proportional to r^2*theta.",
+    "In Fig.1 one spring acts at l and another at l/2.",
+    "Total restoring torque constant becomes (5/4)kl^2.",
+    "In Fig.2 both springs act at l/2.",
+    "Total restoring torque constant becomes (1/2)kl^2.",
+    "Angular frequency is proportional to sqrt(C/I).",
+    "Taking ratio gives f1/f2 = sqrt(5/2)."
+  ]
+}

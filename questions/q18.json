@@ -1,0 +1,91 @@
+{
+  "template_id": "electromagnetic_induction_rotating_solenoid_torque_matching",
+
+  "subject": "Physics",
+
+  "chapter": "Electromagnetic Induction",
+
+  "concept": "Induced Torque on Conducting Loop in Time Varying Magnetic Field",
+
+  "question_template": {
+    "text": "A small circular loop is fixed in the xy-plane on the axis of a long solenoid. The magnetic field direction varies with time according to List-I. Match the resulting torques at t = pi/6omega with List-II."
+  },
+
+  "sampled_variables": {
+    "alpha": 1
+  },
+
+  "constraints": [
+    {
+      "type": "faradays_law",
+      "expression": "emf = -d(phi)/dt"
+    },
+
+    {
+      "type": "induced_current",
+      "expression": "I = emf/R"
+    },
+
+    {
+      "type": "torque_relation",
+      "expression": "tau = m x B"
+    }
+  ],
+
+  "computed_equations": [
+    {
+      "step": 1,
+      "equation": "Evaluate magnetic field components at t = pi/6omega"
+    },
+
+    {
+      "step": 2,
+      "equation": "Compute changing flux"
+    },
+
+    {
+      "step": 3,
+      "equation": "Determine induced current direction"
+    },
+
+    {
+      "step": 4,
+      "equation": "Find torque direction using right hand rule"
+    },
+
+    {
+      "step": 5,
+      "equation": "Correct matching obtained"
+    }
+  ],
+
+  "options": [
+    {
+      "id": "A",
+      "value": "I->Q, II->P, III->S, IV->T",
+      "is_correct": false
+    },
+
+    {
+      "id": "B",
+      "value": "I->S, II->T, III->Q, IV->P",
+      "is_correct": false
+    },
+
+    {
+      "id": "C",
+      "value": "I->Q, II->P, III->S, IV->R",
+      "is_correct": true
+    },
+
+    {
+      "id": "D",
+      "value": "I->T, II->Q, III->P, IV->R",
+      "is_correct": false
+    }
+  ],
+
+  "answer_template": {
+    "correct_answer": "C"
+  }
+}

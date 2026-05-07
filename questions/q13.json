@@ -1,0 +1,273 @@
+{
+  "template_id": "rotational_dynamics_coin_impulse_rotation_count",
+
+  "subject": "Physics",
+
+  "chapter": "Rotational Motion",
+
+  "concept": "Angular Impulse and Rotational Motion of a Disc",
+
+  "question_template": {
+    "text": "A thin circular coin of mass @s0 and radius @s1 is initially in a horizontal xy-plane. The coin is tossed vertically upward (+z direction) by applying an impulse of @s2 at a distance @s3 from its center. The coin spins about its diameter and moves along the +z direction. By the time the coin reaches back to its initial position, it completes @s4 rotations. Given acceleration due to gravity g = @s5, find the value of @s4."
+  },
+
+  "generated_values": {
+    "@s0": "5 gm",
+    "@s1": "4/3 cm",
+    "@s2": "sqrt(pi/2) x 10^-2 N-s",
+    "@s3": "2/3 cm",
+    "@s4": "n",
+    "@s5": "10 m/s^2"
+  },
+
+  "sampled_variables": {
+    "m": 0.005,
+    "R": 0.0133,
+    "impulse": 0.01253,
+    "distance_from_center": 0.00667,
+    "g": 10,
+    "linear_velocity": 2.506,
+    "time_of_flight": 0.501,
+    "moment_of_inertia": 4.42e-7,
+    "angular_momentum": 8.35e-5,
+    "angular_velocity": 188.9,
+    "number_of_rotations": 15
+  },
+
+  "variables": [
+    {
+      "name": "m",
+      "type": "mass",
+      "role": "mass_of_coin",
+      "range": [0.001, 1],
+      "sampled_value": 0.005
+    },
+
+    {
+      "name": "R",
+      "type": "length",
+      "role": "radius_of_coin",
+      "range": [0.001, 1],
+      "sampled_value": 0.0133
+    },
+
+    {
+      "name": "J",
+      "type": "impulse",
+      "role": "applied_impulse",
+      "range": [0.001, 1],
+      "sampled_value": 0.01253
+    },
+
+    {
+      "name": "r",
+      "type": "length",
+      "role": "distance_of_impulse_from_center",
+      "range": [0.001, 1],
+      "sampled_value": 0.00667
+    },
+
+    {
+      "name": "omega",
+      "type": "angular_velocity",
+      "role": "angular_speed_of_coin",
+      "range": [0, 10000],
+      "sampled_value": 188.9
+    },
+
+    {
+      "name": "n",
+      "type": "rotation_count",
+      "role": "number_of_rotations",
+      "range": [0, 1000],
+      "sampled_value": 15
+    }
+  ],
+
+  "constraints": [
+    {
+      "type": "linear_impulse_momentum",
+      "expression": "J = mv"
+    },
+
+    {
+      "type": "angular_impulse",
+      "expression": "J*r = I*omega"
+    },
+
+    {
+      "type": "moment_of_inertia_disc",
+      "expression": "I = (1/4)mR^2"
+    },
+
+    {
+      "type": "time_of_flight",
+      "expression": "T = 2v/g"
+    },
+
+    {
+      "type": "rotation_relation",
+      "expression": "n = omega*T/(2pi)"
+    }
+  ],
+
+  "computed_equations": [
+    {
+      "step": 1,
+      "equation": "Impulse gives linear momentum: J = mv"
+    },
+
+    {
+      "step": 2,
+      "equation": "v = J/m"
+    },
+
+    {
+      "step": 3,
+      "equation": "v = (sqrt(pi/2) x 10^-2)/0.005"
+    },
+
+    {
+      "step": 4,
+      "equation": "v = 2.506 m/s"
+    },
+
+    {
+      "step": 5,
+      "equation": "Time of flight T = 2v/g"
+    },
+
+    {
+      "step": 6,
+      "equation": "T = 2 x 2.506 / 10"
+    },
+
+    {
+      "step": 7,
+      "equation": "T = 0.501 s"
+    },
+
+    {
+      "step": 8,
+      "equation": "Moment of inertia about diameter: I = (1/4)mR^2"
+    },
+
+    {
+      "step": 9,
+      "equation": "I = (1/4)(0.005)(0.0133)^2"
+    },
+
+    {
+      "step": 10,
+      "equation": "Angular impulse: Jr = Iomega"
+    },
+
+    {
+      "step": 11,
+      "equation": "omega = Jr/I"
+    },
+
+    {
+      "step": 12,
+      "equation": "omega = 188.9 rad/s"
+    },
+
+    {
+      "step": 13,
+      "equation": "n = omega*T/(2pi)"
+    },
+
+    {
+      "step": 14,
+      "equation": "n = 15"
+    }
+  ],
+
+  "image_template": {
+    "type": "dynamic_rotating_disc_diagram",
+
+    "objects": [
+      {
+        "object": "disc",
+        "properties": {
+          "radius": "4/3 cm",
+          "orientation": "horizontal_xy_plane"
+        }
+      },
+
+      {
+        "object": "impulse_arrow",
+        "properties": {
+          "direction": "+z",
+          "magnitude": "sqrt(pi/2) x 10^-2 N-s"
+        }
+      },
+
+      {
+        "object": "distance_marker",
+        "properties": {
+          "distance_from_center": "2/3 cm"
+        }
+      },
+
+      {
+        "object": "rotation_axis",
+        "properties": {
+          "type": "diameter"
+        }
+      },
+
+      {
+        "object": "gravity_vector",
+        "properties": {
+          "direction": "-z",
+          "magnitude": "10 m/s^2"
+        }
+      }
+    ]
+  },
+
+  "options": [
+    {
+      "id": "1",
+      "value": "10",
+      "is_correct": false
+    },
+
+    {
+      "id": "2",
+      "value": "12",
+      "is_correct": false
+    },
+
+    {
+      "id": "3",
+      "value": "15",
+      "is_correct": true
+    },
+
+    {
+      "id": "4",
+      "value": "20",
+      "is_correct": false
+    }
+  ],
+
+  "answer_template": {
+    "formula": "n = omega*T/(2pi)",
+    "expanded_formula": "n = (188.9 x 0.501)/(2pi)",
+    "correct_answer": "15"
+  },
+
+  "solution_explanation": [
+    "Impulse gives upward linear velocity to the coin.",
+    "Using impulse-momentum theorem compute translational velocity.",
+    "Time of flight is determined using projectile motion.",
+    "Impulse applied away from center creates angular momentum.",
+    "Use angular impulse relation Jr = Iomega.",
+    "For a thin disc rotating about diameter, I = (1/4)mR^2.",
+    "Compute angular velocity.",
+    "Number of rotations equals angular displacement divided by 2pi.",
+    "Final answer is 15 rotations."
+  ]
+}

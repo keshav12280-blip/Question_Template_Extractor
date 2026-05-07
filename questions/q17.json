@@ -1,0 +1,97 @@
+{
+  "template_id": "current_distribution_complex_resistor_network",
+
+  "subject": "Physics",
+
+  "chapter": "Current Electricity",
+
+  "concept": "Kirchhoff Laws and Symmetric Resistor Networks",
+
+  "question_template": {
+    "text": "The figure shows a circuit having eight resistances of 1 ohm each and two ideal batteries of 12V and 6V. Determine the correct statements regarding currents through various resistors."
+  },
+
+  "sampled_variables": {
+    "R": 1,
+    "E1": 12,
+    "E2": 6,
+    "I1": 7.2,
+    "I2": 1.2,
+    "I3": 4.8,
+    "I5": 2.4
+  },
+
+  "constraints": [
+    {
+      "type": "kirchhoff_current_law",
+      "expression": "sum(I_in)=sum(I_out)"
+    },
+
+    {
+      "type": "kirchhoff_voltage_law",
+      "expression": "sum(V)=0"
+    },
+
+    {
+      "type": "ohms_law",
+      "expression": "V=IR"
+    }
+  ],
+
+  "computed_equations": [
+    {
+      "step": 1,
+      "equation": "Use symmetry and KVL"
+    },
+
+    {
+      "step": 2,
+      "equation": "Current through R1 = 7.2A"
+    },
+
+    {
+      "step": 3,
+      "equation": "Current through R2 = 1.2A"
+    },
+
+    {
+      "step": 4,
+      "equation": "Current through R3 = 4.8A"
+    },
+
+    {
+      "step": 5,
+      "equation": "Current through R5 = 2.4A"
+    }
+  ],
+
+  "options": [
+    {
+      "id": "A",
+      "value": "Current through R1 is 7.2A",
+      "is_correct": true
+    },
+
+    {
+      "id": "B",
+      "value": "Current through R2 is 1.2A",
+      "is_correct": true
+    },
+
+    {
+      "id": "C",
+      "value": "Current through R3 is 4.8A",
+      "is_correct": true
+    },
+
+    {
+      "id": "D",
+      "value": "Current through R5 is 2.4A",
+      "is_correct": true
+    }
+  ],
+
+  "answer_template": {
+    "correct_answer": "A,B,C,D"
+  }
+}

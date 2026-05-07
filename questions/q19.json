@@ -1,0 +1,77 @@
+{
+  "template_id": "ray_optics_two_lens_image_position_matching",
+
+  "subject": "Physics",
+
+  "chapter": "Ray Optics and Optical Instruments",
+
+  "concept": "Successive Image Formation by Two Thin Lenses",
+
+  "question_template": {
+    "text": "List I contains combinations of two lenses with given focal lengths. An object is placed 20 cm from the first lens and the distance between lenses is 5 cm. Match each case with the final image position in List II."
+  },
+
+  "sampled_variables": {
+    "object_distance": 20,
+    "lens_separation": 5
+  },
+
+  "constraints": [
+    {
+      "type": "lens_formula",
+      "expression": "1/f = 1/v - 1/u"
+    },
+
+    {
+      "type": "successive_image",
+      "expression": "image_from_first_lens_becomes_object_for_second"
+    }
+  ],
+
+  "computed_equations": [
+    {
+      "step": 1,
+      "equation": "Apply lens formula for first lens"
+    },
+
+    {
+      "step": 2,
+      "equation": "Use obtained image as object for second lens"
+    },
+
+    {
+      "step": 3,
+      "equation": "Compute final image positions"
+    }
+  ],
+
+  "options": [
+    {
+      "id": "A",
+      "value": "(I)->P, (II)->R, (III)->Q, (IV)->T",
+      "is_correct": false
+    },
+
+    {
+      "id": "B",
+      "value": "(I)->Q, (II)->P, (III)->T, (IV)->S",
+      "is_correct": false
+    },
+
+    {
+      "id": "C",
+      "value": "(I)->P, (II)->T, (III)->R, (IV)->Q",
+      "is_correct": false
+    },
+
+    {
+      "id": "D",
+      "value": "(I)->T, (II)->S, (III)->Q, (IV)->R",
+      "is_correct": true
+    }
+  ],
+
+  "answer_template": {
+    "correct_answer": "D"
+  }
+}

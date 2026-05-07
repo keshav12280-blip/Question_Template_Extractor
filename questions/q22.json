@@ -1,0 +1,72 @@
+{
+  "template_id": "vector_algebra_triangle_cross_product",
+
+  "subject": "Mathematics",
+
+  "chapter": "Vector Algebra",
+
+  "concept": "Dot Product and Cross Product Relations in Triangle",
+
+  "question_template": {
+    "text": "In triangle PQR, vectors a = QR, b = RP and c = PQ satisfy |a| = 3, |b| = 4 and [a.(c-b)]/[c.(a-b)] = |a|/(|a|+|b|). Find the value of |a x b|^2."
+  },
+
+  "sampled_variables": {
+    "a_magnitude": 3,
+    "b_magnitude": 4,
+    "cross_square": 144
+  },
+
+  "constraints": [
+    {
+      "type": "triangle_vector_relation",
+      "expression": "a+b+c=0"
+    },
+
+    {
+      "type": "cross_product_identity",
+      "expression": "|a x b|^2 = |a|^2|b|^2-(a.b)^2"
+    },
+
+    {
+      "type": "dot_product_relation",
+      "expression": "given_fraction_relation"
+    }
+  ],
+
+  "computed_equations": [
+    {
+      "step": 1,
+      "equation": "Use c = -(a+b)"
+    },
+
+    {
+      "step": 2,
+      "equation": "Substitute into given relation"
+    },
+
+    {
+      "step": 3,
+      "equation": "Obtain a.b = -6"
+    },
+
+    {
+      "step": 4,
+      "equation": "|a x b|^2 = 3^2*4^2 - (-6)^2"
+    },
+
+    {
+      "step": 5,
+      "equation": "|a x b|^2 = 144 - 36"
+    },
+
+    {
+      "step": 6,
+      "equation": "|a x b|^2 = 108"
+    }
+  ],
+
+  "answer_template": {
+    "correct_answer": "108"
+  }
+}

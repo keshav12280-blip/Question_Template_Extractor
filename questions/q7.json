@@ -1,0 +1,262 @@
+{
+  "template_id": "mechanics_blocks_friction_constant_speed_force_corrected",
+
+  "subject": "Physics",
+
+  "chapter": "Laws of Motion",
+
+  "concept": "Friction Between Multiple Blocks and Constant Velocity Motion",
+
+  "question_template": {
+    "text": "In the given figure the blocks @s0, @s1 and @s2 weigh @s3 kg, @s4 kg and @s5 kg respectively. The coefficient of sliding friction between any two surfaces is @s6. The force @s7 required to slide the block @s2 with constant speed is ____ N. (Use g = @s8 m/s^2)"
+  },
+
+  "generated_values": {
+    "@s0": "A",
+    "@s1": "B",
+    "@s2": "C",
+    "@s3": "4",
+    "@s4": "6",
+    "@s5": "8",
+    "@s6": "0.5",
+    "@s7": "F",
+    "@s8": "10"
+  },
+
+  "sampled_variables": {
+    "mA": 4,
+    "mB": 6,
+    "mC": 8,
+    "mu": 0.5,
+    "g": 10,
+    "friction_AB": 20,
+    "friction_BC": 100,
+    "friction_ground": 90,
+    "total_force": 210
+  },
+
+  "variables": [
+    {
+      "name": "mA",
+      "type": "mass",
+      "role": "mass_of_block_A",
+      "range": [1, 20],
+      "sampled_value": 4
+    },
+
+    {
+      "name": "mB",
+      "type": "mass",
+      "role": "mass_of_block_B",
+      "range": [1, 20],
+      "sampled_value": 6
+    },
+
+    {
+      "name": "mC",
+      "type": "mass",
+      "role": "mass_of_block_C",
+      "range": [1, 30],
+      "sampled_value": 8
+    },
+
+    {
+      "name": "mu",
+      "type": "coefficient_of_friction",
+      "role": "sliding_friction_coefficient",
+      "range": [0.1, 1],
+      "sampled_value": 0.5
+    },
+
+    {
+      "name": "g",
+      "type": "acceleration",
+      "role": "gravitational_acceleration",
+      "range": [9.8, 10],
+      "sampled_value": 10
+    },
+
+    {
+      "name": "F",
+      "type": "force",
+      "role": "external_applied_force",
+      "range": [1, 1000],
+      "sampled_value": 210
+    }
+  ],
+
+  "constraints": [
+    {
+      "type": "kinetic_friction",
+      "expression": "f = mu*N"
+    },
+
+    {
+      "type": "constant_velocity_condition",
+      "expression": "net_force = 0"
+    },
+
+    {
+      "type": "normal_reaction_AB",
+      "expression": "N_AB = mA*g"
+    },
+
+    {
+      "type": "normal_reaction_BC",
+      "expression": "N_BC = (mA + mB)*g"
+    },
+
+    {
+      "type": "normal_reaction_ground",
+      "expression": "N_ground = (mA + mB + mC)*g"
+    }
+  ],
+
+  "computed_equations": [
+    {
+      "step": 1,
+      "equation": "f_AB = mu*mA*g"
+    },
+
+    {
+      "step": 2,
+      "equation": "f_AB = 0.5*4*10 = 20 N"
+    },
+
+    {
+      "step": 3,
+      "equation": "Due to pulley constraint, block B moves opposite to block C"
+    },
+
+    {
+      "step": 4,
+      "equation": "Relative motion occurs at B-C interface"
+    },
+
+    {
+      "step": 5,
+      "equation": "Friction at B-C acts on both blocks"
+    },
+
+    {
+      "step": 6,
+      "equation": "f_BC = 2*mu*(mA + mB)*g"
+    },
+
+    {
+      "step": 7,
+      "equation": "f_BC = 2*0.5*(4+6)*10 = 100 N"
+    },
+
+    {
+      "step": 8,
+      "equation": "f_ground = mu*(mA + mB + mC)*g"
+    },
+
+    {
+      "step": 9,
+      "equation": "f_ground = 0.5*(4+6+8)*10 = 90 N"
+    },
+
+    {
+      "step": 10,
+      "equation": "Total resisting force = 20 + 100 + 90"
+    },
+
+    {
+      "step": 11,
+      "equation": "F = 210 N"
+    }
+  ],
+
+  "image_template": {
+    "type": "dynamic_blocks_friction_diagram",
+
+    "objects": [
+      {
+        "object": "block",
+        "properties": {
+          "label": "A",
+          "mass": "4kg",
+          "position": "top"
+        }
+      },
+
+      {
+        "object": "block",
+        "properties": {
+          "label": "B",
+          "mass": "6kg",
+          "position": "middle"
+        }
+      },
+
+      {
+        "object": "block",
+        "properties": {
+          "label": "C",
+          "mass": "8kg",
+          "position": "bottom"
+        }
+      },
+
+      {
+        "object": "force_arrow",
+        "properties": {
+          "label": "F",
+          "direction": "left"
+        }
+      },
+
+      {
+        "object": "fixed_pulley",
+        "properties": {
+          "location": "right_wall"
+        }
+      }
+    ]
+  },
+
+  "options": [
+    {
+      "id": "1",
+      "value": "160 N",
+      "is_correct": false
+    },
+
+    {
+      "id": "2",
+      "value": "180 N",
+      "is_correct": false
+    },
+
+    {
+      "id": "3",
+      "value": "200 N",
+      "is_correct": false
+    },
+
+    {
+      "id": "4",
+      "value": "210 N",
+      "is_correct": true
+    }
+  ],
+
+  "answer_template": {
+    "formula": "F = f_AB + 2f_BC + f_ground",
+    "expanded_formula": "F = 20 + 100 + 90",
+    "correct_answer": "210 N"
+  },
+
+  "solution_explanation": [
+    "Block C moves left with constant speed.",
+    "Due to pulley constraint block B moves right.",
+    "Relative sliding occurs between B and C.",
+    "Friction acts at A-B, B-C and ground interfaces.",
+    "Friction between A and B is 20 N.",
+    "Effective opposing friction due to B-C interaction becomes 100 N.",
+    "Ground friction equals 90 N.",
+    "Adding all resisting forces gives F = 210 N."
+  ]
+}
