@@ -1,0 +1,269 @@
+{
+  "template_id": "thermodynamics_piston_spring_equilibrium_pressure",
+
+  "subject": "Physics",
+
+  "chapter": "Thermodynamics",
+
+  "concept": "Mechanical and Thermal Equilibrium of Ideal Gases with Spring Loaded Piston",
+
+  "question_template": {
+    "text": "The left and right compartments of a thermally isolated container of length @s0 are separated by a thermally conducting movable piston of area @s1. The left and right compartments are filled with @s2 and @s3 moles of an ideal gas respectively. In the left compartment the piston is attached to a spring with spring constant @s4 and natural length @s5. In thermodynamic equilibrium, the piston is at a distance @s6 from both edges of the container. Under these conditions, if the pressure in the right compartment is P = (@s4 @s0/@s1) alpha, then the value of alpha is ______."
+  },
+
+  "generated_values": {
+    "@s0": "L",
+    "@s1": "A",
+    "@s2": "3/2",
+    "@s3": "1",
+    "@s4": "k",
+    "@s5": "2L/5",
+    "@s6": "L/2"
+  },
+
+  "sampled_variables": {
+    "L": 10,
+    "A": 2,
+    "n_left": 1.5,
+    "n_right": 1,
+    "k": 100,
+    "natural_length": 4,
+    "equilibrium_position": 5,
+    "spring_extension": 1,
+    "spring_force": 100,
+    "pressure_difference": 50,
+    "P_right": 100,
+    "alpha": 0.2
+  },
+
+  "variables": [
+    {
+      "name": "L",
+      "type": "length",
+      "role": "container_length",
+      "range": [1, 100],
+      "sampled_value": 10
+    },
+
+    {
+      "name": "A",
+      "type": "area",
+      "role": "cross_sectional_area",
+      "range": [1, 50],
+      "sampled_value": 2
+    },
+
+    {
+      "name": "k",
+      "type": "spring_constant",
+      "role": "spring_constant",
+      "range": [1, 1000],
+      "sampled_value": 100
+    },
+
+    {
+      "name": "n_left",
+      "type": "moles",
+      "role": "moles_in_left_compartment",
+      "range": [0.5, 5],
+      "sampled_value": 1.5
+    },
+
+    {
+      "name": "n_right",
+      "type": "moles",
+      "role": "moles_in_right_compartment",
+      "range": [0.5, 5],
+      "sampled_value": 1
+    },
+
+    {
+      "name": "alpha",
+      "type": "dimensionless",
+      "role": "pressure_coefficient",
+      "range": [0, 10],
+      "sampled_value": 0.2
+    }
+  ],
+
+  "constraints": [
+    {
+      "type": "thermal_equilibrium",
+      "expression": "T_left = T_right"
+    },
+
+    {
+      "type": "ideal_gas_law",
+      "expression": "PV = nRT"
+    },
+
+    {
+      "type": "equal_volumes",
+      "expression": "V_left = V_right = AL/2"
+    },
+
+    {
+      "type": "pressure_ratio",
+      "expression": "P_left/P_right = n_left/n_right"
+    },
+
+    {
+      "type": "spring_force",
+      "expression": "F_spring = kx"
+    },
+
+    {
+      "type": "mechanical_equilibrium",
+      "expression": "(P_left - P_right)A = kx"
+    }
+  ],
+
+  "computed_equations": [
+    {
+      "step": 1,
+      "equation": "At equilibrium, piston divides container into equal halves"
+    },
+
+    {
+      "step": 2,
+      "equation": "V_left = V_right = AL/2"
+    },
+
+    {
+      "step": 3,
+      "equation": "Using ideal gas law and equal temperatures:"
+    },
+
+    {
+      "step": 4,
+      "equation": "P_left/P_right = n_left/n_right = (3/2)/1"
+    },
+
+    {
+      "step": 5,
+      "equation": "P_left = (3/2)P_right"
+    },
+
+    {
+      "step": 6,
+      "equation": "Spring extension x = L/2 - 2L/5"
+    },
+
+    {
+      "step": 7,
+      "equation": "x = L/10"
+    },
+
+    {
+      "step": 8,
+      "equation": "(P_left - P_right)A = kL/10"
+    },
+
+    {
+      "step": 9,
+      "equation": "((3/2)P_right - P_right)A = kL/10"
+    },
+
+    {
+      "step": 10,
+      "equation": "(1/2)P_right*A = kL/10"
+    },
+
+    {
+      "step": 11,
+      "equation": "P_right = kL/(5A)"
+    },
+
+    {
+      "step": 12,
+      "equation": "alpha = 0.2"
+    }
+  ],
+
+  "image_template": {
+    "type": "dynamic_thermodynamics_diagram",
+
+    "objects": [
+      {
+        "object": "container",
+        "properties": {
+          "length": "L"
+        }
+      },
+
+      {
+        "object": "movable_piston",
+        "properties": {
+          "position": "L/2",
+          "area": "A"
+        }
+      },
+
+      {
+        "object": "spring",
+        "properties": {
+          "spring_constant": "k",
+          "natural_length": "2L/5"
+        }
+      },
+
+      {
+        "object": "left_compartment",
+        "properties": {
+          "moles": "3/2"
+        }
+      },
+
+      {
+        "object": "right_compartment",
+        "properties": {
+          "moles": "1"
+        }
+      }
+    ]
+  },
+
+  "options": [
+    {
+      "id": "1",
+      "value": "0.1",
+      "is_correct": false
+    },
+
+    {
+      "id": "2",
+      "value": "0.2",
+      "is_correct": true
+    },
+
+    {
+      "id": "3",
+      "value": "0.5",
+      "is_correct": false
+    },
+
+    {
+      "id": "4",
+      "value": "1",
+      "is_correct": false
+    }
+  ],
+
+  "answer_template": {
+    "formula": "P = (kL/A) alpha",
+    "expanded_formula": "P = kL/(5A)",
+    "correct_answer": "0.2"
+  },
+
+  "solution_explanation": [
+    "At equilibrium both compartments have equal temperature because piston is thermally conducting.",
+    "Volumes are equal since piston is at the center.",
+    "Using ideal gas law pressure ratio equals mole ratio.",
+    "Thus P_left = (3/2)P_right.",
+    "Spring extension is L/10.",
+    "Apply force balance on piston.",
+    "Pressure difference balances spring force.",
+    "Solve for P_right.",
+    "Comparing with given form gives alpha = 0.2."
+  ]
+}

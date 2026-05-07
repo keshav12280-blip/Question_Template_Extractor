@@ -1,0 +1,243 @@
+{
+  "template_id": "trigonometry_triangle_half_angle_identity_mcq",
+
+  "subject": "Mathematics",
+
+  "chapter": "Properties of Triangles and Trigonometry",
+
+  "concept": "Half Angle Formula in Triangle and Angle Relations",
+
+  "question_template": {
+    "text": "Let @s0, @s1 and @s2 be positive real numbers representing the sides opposite to angles @s3, @s4 and @s5 respectively in a triangle. If tan(@s3/2) + tan(@s5/2) = @s6/@s7, then which of the following statements are true?"
+  },
+
+  "generated_values": {
+    "@s0": "x",
+    "@s1": "y",
+    "@s2": "z",
+    "@s3": "X",
+    "@s4": "Y",
+    "@s5": "Z",
+    "@s6": "2y",
+    "@s7": "x+y+z"
+  },
+
+  "sampled_variables": {
+    "x": 5,
+    "y": 7,
+    "z": 8,
+    "X": 40,
+    "Y": 80,
+    "Z": 60,
+    "semi_perimeter": 10,
+    "tan_X_half": 0.333,
+    "tan_Z_half": 0.4,
+    "lhs": 0.733,
+    "rhs": 0.733
+  },
+
+  "variables": [
+    {
+      "name": "x",
+      "type": "length",
+      "role": "side_opposite_angle_X",
+      "range": [1, 100],
+      "sampled_value": 5
+    },
+
+    {
+      "name": "y",
+      "type": "length",
+      "role": "side_opposite_angle_Y",
+      "range": [1, 100],
+      "sampled_value": 7
+    },
+
+    {
+      "name": "z",
+      "type": "length",
+      "role": "side_opposite_angle_Z",
+      "range": [1, 100],
+      "sampled_value": 8
+    },
+
+    {
+      "name": "X",
+      "type": "angle",
+      "role": "angle_opposite_side_x",
+      "range": [1, 179],
+      "sampled_value": 40
+    },
+
+    {
+      "name": "Y",
+      "type": "angle",
+      "role": "angle_opposite_side_y",
+      "range": [1, 179],
+      "sampled_value": 80
+    },
+
+    {
+      "name": "Z",
+      "type": "angle",
+      "role": "angle_opposite_side_z",
+      "range": [1, 179],
+      "sampled_value": 60
+    }
+  ],
+
+  "constraints": [
+    {
+      "type": "triangle_angle_sum",
+      "expression": "X + Y + Z = 180"
+    },
+
+    {
+      "type": "triangle_inequality",
+      "expression": "x + y > z"
+    },
+
+    {
+      "type": "half_angle_formula",
+      "expression": "tan(X/2) = r/(s-x)"
+    },
+
+    {
+      "type": "semi_perimeter",
+      "expression": "s = (x+y+z)/2"
+    },
+
+    {
+      "type": "given_relation",
+      "expression": "tan(X/2) + tan(Z/2) = 2y/(x+y+z)"
+    }
+  ],
+
+  "computed_equations": [
+    {
+      "step": 1,
+      "equation": "Use half-angle identities in triangle"
+    },
+
+    {
+      "step": 2,
+      "equation": "tan(X/2) = r/(s-x)"
+    },
+
+    {
+      "step": 3,
+      "equation": "tan(Z/2) = r/(s-z)"
+    },
+
+    {
+      "step": 4,
+      "equation": "tan(X/2) + tan(Z/2) = 2y/(x+y+z)"
+    },
+
+    {
+      "step": 5,
+      "equation": "Simplifying gives Y = X + Z"
+    },
+
+    {
+      "step": 6,
+      "equation": "Since X + Y + Z = 180"
+    },
+
+    {
+      "step": 7,
+      "equation": "Y = 90 deg"
+    },
+
+    {
+      "step": 8,
+      "equation": "Apply cosine rule"
+    },
+
+    {
+      "step": 9,
+      "equation": "y^2 = x^2 + z^2"
+    },
+
+    {
+      "step": 10,
+      "equation": "x^2 + z^2 - y^2 = 0"
+    },
+
+    {
+      "step": 11,
+      "equation": "tan(X/2) = x/z"
+    }
+  ],
+
+  "image_template": {
+    "type": "triangle_trigonometry_expression",
+
+    "objects": [
+      {
+        "object": "triangle",
+        "properties": {
+          "sides": ["x", "y", "z"],
+          "angles": ["X", "Y", "Z"]
+        }
+      },
+
+      {
+        "object": "equation",
+        "properties": {
+          "expression": "tan(X/2) + tan(Z/2) = 2y/(x+y+z)"
+        }
+      },
+
+      {
+        "object": "mcq_options",
+        "properties": {
+          "count": 4
+        }
+      }
+    ]
+  },
+
+  "options": [
+    {
+      "id": "A",
+      "value": "2Y = X + Z",
+      "is_correct": false
+    },
+
+    {
+      "id": "B",
+      "value": "Y = X + Z",
+      "is_correct": true
+    },
+
+    {
+      "id": "C",
+      "value": "tan(X/2) = x/(y+z)",
+      "is_correct": false
+    },
+
+    {
+      "id": "D",
+      "value": "x^2 + z^2 - y^2 = xz",
+      "is_correct": false
+    }
+  ],
+
+  "answer_template": {
+    "formula": "X + Y + Z = 180 and Y = X + Z",
+    "expanded_formula": "2Y = 180 => Y = 90deg",
+    "correct_answer": "B"
+  },
+
+  "solution_explanation": [
+    "Start with the given half-angle tangent relation.",
+    "Use triangle half-angle identities.",
+    "Simplify the expression algebraically.",
+    "Obtain Y = X + Z.",
+    "Using triangle angle sum gives Y = 90deg.",
+    "Thus the triangle becomes right angled at Y.",
+    "Check each option using angle and side relations.",
+    "Only option B is true."
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "template_id": "electrostatics_projectile_motion_in_uniform_electric_field",
+
+  "subject": "Physics",
+
+  "chapter": "Electrostatics",
+
+  "concept": "Projectile Motion of Charged Particle in Electric Field",
+
+  "question_template": {
+    "text": "A uniform electric field E = -400sqrt(3) y-hat NC^-1 is applied in a region. A charged particle with charge to mass ratio q/m = 10^10 Ckg^-1 is projected with initial speed 2sqrt(10) x 10^6 ms^-1 toward a target 5m away. Determine the correct statements."
+  },
+
+  "sampled_variables": {
+    "E": 692.8,
+    "u": 6324555,
+    "q_by_m": 10000000000,
+    "acceleration": 6928203230,
+    "distance": 5
+  },
+
+  "constraints": [
+    {
+      "type": "electric_force",
+      "expression": "F = qE"
+    },
+
+    {
+      "type": "particle_acceleration",
+      "expression": "a = qE/m"
+    },
+
+    {
+      "type": "projectile_condition",
+      "expression": "y = ux*t - (1/2)at^2"
+    }
+  ],
+
+  "computed_equations": [
+    {
+      "step": 1,
+      "equation": "a = qE/m"
+    },
+
+    {
+      "step": 2,
+      "equation": "a = 4sqrt(3) x 10^12"
+    },
+
+    {
+      "step": 3,
+      "equation": "Projectile equation applied"
+    },
+
+    {
+      "step": 4,
+      "equation": "Angles possible are 30deg and 60deg"
+    },
+
+    {
+      "step": 5,
+      "equation": "Possible times are sqrt(5/6) us and sqrt(5/2) us"
+    }
+  ],
+
+  "options": [
+    {
+      "id": "A",
+      "value": "45 degree projection",
+      "is_correct": false
+    },
+
+    {
+      "id": "B",
+      "value": "30 degree or 60 degree projection",
+      "is_correct": true
+    },
+
+    {
+      "id": "C",
+      "value": "Possible times sqrt(5/6) us and sqrt(5/2) us",
+      "is_correct": true
+    },
+
+    {
+      "id": "D",
+      "value": "Time sqrt(5/3) us",
+      "is_correct": false
+    }
+  ],
+
+  "answer_template": {
+    "correct_answer": "B,C"
+  }
+}
