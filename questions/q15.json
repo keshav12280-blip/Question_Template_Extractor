@@ -1,0 +1,110 @@
+{
+  "template_id": "kinetic_theory_maxwell_speed_distribution",
+
+  "subject": "Physics",
+
+  "chapter": "Kinetic Theory of Gases",
+
+  "concept": "Most Probable, Average and RMS Speeds",
+
+  "question_template": {
+    "text": "If the distribution of molecular speeds of a gas is as shown in the figure, then the ratio of the most probable, average, and root mean square speeds respectively is:"
+  },
+
+  "generated_values": {},
+
+  "sampled_variables": {
+    "v_mp": 1,
+    "v_avg": 1.128,
+    "v_rms": 1.224
+  },
+
+  "variables": [
+    {
+      "name": "v_mp",
+      "type": "speed",
+      "role": "most_probable_speed",
+      "sampled_value": 1
+    },
+
+    {
+      "name": "v_avg",
+      "type": "speed",
+      "role": "average_speed",
+      "sampled_value": 1.128
+    },
+
+    {
+      "name": "v_rms",
+      "type": "speed",
+      "role": "root_mean_square_speed",
+      "sampled_value": 1.224
+    }
+  ],
+
+  "constraints": [
+    {
+      "type": "most_probable_speed",
+      "expression": "v_mp = sqrt(2kT/m)"
+    },
+
+    {
+      "type": "average_speed",
+      "expression": "v_avg = sqrt(8kT/pi*m)"
+    },
+
+    {
+      "type": "rms_speed",
+      "expression": "v_rms = sqrt(3kT/m)"
+    }
+  ],
+
+  "computed_equations": [
+    {
+      "step": 1,
+      "equation": "v_mp : v_avg : v_rms"
+    },
+
+    {
+      "step": 2,
+      "equation": "1 : sqrt(4/pi) : sqrt(3/2)"
+    },
+
+    {
+      "step": 3,
+      "equation": "1 : 1.128 : 1.224"
+    }
+  ],
+
+  "options": [
+    {
+      "id": "A",
+      "value": "1:1:1",
+      "is_correct": false
+    },
+
+    {
+      "id": "B",
+      "value": "1:1:1.224",
+      "is_correct": false
+    },
+
+    {
+      "id": "C",
+      "value": "1:1.128:1.224",
+      "is_correct": true
+    },
+
+    {
+      "id": "D",
+      "value": "1:1.128:1",
+      "is_correct": false
+    }
+  ],
+
+  "answer_template": {
+    "formula": "v_mp : v_avg : v_rms",
+    "expanded_formula": "1 : 1.128 : 1.224",
+    "correct_answer": "1 : 1.128 : 1.224"
+  }
+}

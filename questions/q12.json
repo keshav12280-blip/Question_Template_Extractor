@@ -1,0 +1,228 @@
+{
+  "template_id": "optics_brewster_angle_spherical_air_cavity",
+
+  "subject": "Physics",
+
+  "chapter": "Ray Optics and Optical Instruments",
+
+  "concept": "Polarization and Brewster Angle in Spherical Geometry",
+
+  "question_template": {
+    "text": "A solid glass sphere of refractive index @s0 and radius @s1 contains a spherical air cavity of radius @s2, as shown in the figure. A very thin glass layer is present at the point @s3 so that the air cavity remains inside the glass sphere. An unpolarized monochromatic light source @s4 emits a ray from a point inside the glass sphere toward the periphery. If the light is reflected from point @s3 and is fully polarized, then the angle of incidence at the inner surface of the glass sphere is @s5. The value of sin(@s5) is ______."
+  },
+
+  "generated_values": {
+    "@s0": "sqrt(3)",
+    "@s1": "R",
+    "@s2": "R/2",
+    "@s3": "O",
+    "@s4": "S",
+    "@s5": "theta"
+  },
+
+  "sampled_variables": {
+    "n_glass": 1.732,
+    "n_air": 1,
+    "R_outer": 10,
+    "R_inner": 5,
+    "brewster_angle": 30,
+    "theta": 30,
+    "sin_theta": 0.5
+  },
+
+  "variables": [
+    {
+      "name": "n_glass",
+      "type": "refractive_index",
+      "role": "refractive_index_of_glass",
+      "range": [1.1, 3],
+      "sampled_value": 1.732
+    },
+
+    {
+      "name": "n_air",
+      "type": "refractive_index",
+      "role": "refractive_index_of_air",
+      "range": [1, 1],
+      "sampled_value": 1
+    },
+
+    {
+      "name": "R",
+      "type": "length",
+      "role": "radius_of_outer_sphere",
+      "range": [1, 100],
+      "sampled_value": 10
+    },
+
+    {
+      "name": "theta",
+      "type": "angle",
+      "role": "angle_of_incidence_at_inner_surface",
+      "range": [0, 90],
+      "sampled_value": 30
+    },
+
+    {
+      "name": "sin_theta",
+      "type": "dimensionless",
+      "role": "required_value",
+      "range": [0, 1],
+      "sampled_value": 0.5
+    }
+  ],
+
+  "constraints": [
+    {
+      "type": "brewster_law",
+      "expression": "tan(ip) = n2/n1"
+    },
+
+    {
+      "type": "polarization_condition",
+      "expression": "reflected and refracted rays are perpendicular"
+    },
+
+    {
+      "type": "snells_law",
+      "expression": "n1*sin(i) = n2*sin(r)"
+    },
+
+    {
+      "type": "sphere_geometry",
+      "expression": "normal at any point passes through center"
+    },
+
+    {
+      "type": "reflection_condition",
+      "expression": "angle_of_incidence = brewster_angle"
+    }
+  ],
+
+  "computed_equations": [
+    {
+      "step": 1,
+      "equation": "Reflection at O is fully polarized"
+    },
+
+    {
+      "step": 2,
+      "equation": "Therefore incidence at O equals Brewster angle"
+    },
+
+    {
+      "step": 3,
+      "equation": "tan(ip) = n_air/n_glass"
+    },
+
+    {
+      "step": 4,
+      "equation": "tan(ip) = 1/sqrt(3)"
+    },
+
+    {
+      "step": 5,
+      "equation": "ip = 30 deg"
+    },
+
+    {
+      "step": 6,
+      "equation": "Using spherical geometry, theta = 30 deg"
+    },
+
+    {
+      "step": 7,
+      "equation": "sin(theta) = sin(30)"
+    },
+
+    {
+      "step": 8,
+      "equation": "sin(theta) = 1/2"
+    }
+  ],
+
+  "image_template": {
+    "type": "dynamic_spherical_optics_diagram",
+
+    "objects": [
+      {
+        "object": "outer_glass_sphere",
+        "properties": {
+          "radius": "R",
+          "refractive_index": "sqrt(3)"
+        }
+      },
+
+      {
+        "object": "inner_air_cavity",
+        "properties": {
+          "radius": "R/2",
+          "refractive_index": "1"
+        }
+      },
+
+      {
+        "object": "light_source",
+        "properties": {
+          "label": "S"
+        }
+      },
+
+      {
+        "object": "incident_ray",
+        "properties": {
+          "reflection_point": "O"
+        }
+      },
+
+      {
+        "object": "angle_marker",
+        "properties": {
+          "label": "theta"
+        }
+      }
+    ]
+  },
+
+  "options": [
+    {
+      "id": "1",
+      "value": "0.25",
+      "is_correct": false
+    },
+
+    {
+      "id": "2",
+      "value": "0.5",
+      "is_correct": true
+    },
+
+    {
+      "id": "3",
+      "value": "0.75",
+      "is_correct": false
+    },
+
+    {
+      "id": "4",
+      "value": "sqrt(3)/2",
+      "is_correct": false
+    }
+  ],
+
+  "answer_template": {
+    "formula": "sin(theta) = sin(ip)",
+    "expanded_formula": "sin(theta) = sin(30deg)",
+    "correct_answer": "0.5"
+  },
+
+  "solution_explanation": [
+    "Since reflected light is fully polarized, incidence angle equals Brewster angle.",
+    "Apply Brewster law for glass-air interface.",
+    "tan(ip) = n_air/n_glass.",
+    "Substituting values gives tan(ip) = 1/sqrt(3).",
+    "Thus ip = 30deg.",
+    "Using spherical geometry the incidence angle theta equals Brewster angle.",
+    "Therefore sin(theta) = 1/2."
+  ]
+}

@@ -1,0 +1,239 @@
+{
+  "template_id": "fluid_mechanics_bernoulli_continuity_flow_rate",
+
+  "subject": "Physics",
+
+  "chapter": "Mechanical Properties of Fluids",
+
+  "concept": "Bernoulli Equation and Continuity Equation",
+
+  "question_template": {
+    "text": "Water flows through a horizontal tube as shown in the figure. The difference in height between the water columns in vertical tubes is @s0 cm and the areas of cross-sections at @s1 and @s2 are @s3 cm^2 and @s4 cm^2 respectively. The rate of flow will be ____ cm^3/s. (Take g = @s5 m/s^2)"
+  },
+
+  "generated_values": {
+    "@s0": "5",
+    "@s1": "A",
+    "@s2": "B",
+    "@s3": "6",
+    "@s4": "3",
+    "@s5": "10"
+  },
+
+  "sampled_variables": {
+    "h": 5,
+    "A1": 6,
+    "A2": 3,
+    "g": 10,
+    "v1": 1,
+    "v2": 2,
+    "Q": 346.4
+  },
+
+  "variables": [
+    {
+      "name": "h",
+      "type": "length",
+      "role": "difference_in_water_column_height",
+      "range": [1, 20],
+      "sampled_value": 5
+    },
+
+    {
+      "name": "A1",
+      "type": "area",
+      "role": "cross_section_area_at_A",
+      "range": [1, 20],
+      "sampled_value": 6
+    },
+
+    {
+      "name": "A2",
+      "type": "area",
+      "role": "cross_section_area_at_B",
+      "range": [1, 20],
+      "sampled_value": 3
+    },
+
+    {
+      "name": "g",
+      "type": "acceleration",
+      "role": "gravitational_acceleration",
+      "range": [9.8, 10],
+      "sampled_value": 10
+    },
+
+    {
+      "name": "Q",
+      "type": "flow_rate",
+      "role": "volume_flow_rate",
+      "range": [1, 10000],
+      "sampled_value": 346.4
+    }
+  ],
+
+  "constraints": [
+    {
+      "type": "continuity_equation",
+      "expression": "A1*v1 = A2*v2"
+    },
+
+    {
+      "type": "bernoulli_equation",
+      "expression": "P1 + (1/2)rho*v1^2 = P2 + (1/2)rho*v2^2"
+    },
+
+    {
+      "type": "pressure_height_relation",
+      "expression": "P1 - P2 = rho*g*h"
+    },
+
+    {
+      "type": "horizontal_flow_condition",
+      "expression": "y1 = y2"
+    }
+  ],
+
+  "computed_equations": [
+    {
+      "step": 1,
+      "equation": "A1*v1 = A2*v2"
+    },
+
+    {
+      "step": 2,
+      "equation": "6*v1 = 3*v2"
+    },
+
+    {
+      "step": 3,
+      "equation": "v2 = 2*v1"
+    },
+
+    {
+      "step": 4,
+      "equation": "P1 - P2 = rho*g*h"
+    },
+
+    {
+      "step": 5,
+      "equation": "rho*10*0.05 = (1/2)rho(v2^2 - v1^2)"
+    },
+
+    {
+      "step": 6,
+      "equation": "0.5 = (1/2)(4v1^2 - v1^2)"
+    },
+
+    {
+      "step": 7,
+      "equation": "1 = 3v1^2"
+    },
+
+    {
+      "step": 8,
+      "equation": "v1 = 1/sqrt(3) m/s"
+    },
+
+    {
+      "step": 9,
+      "equation": "Q = A1*v1"
+    },
+
+    {
+      "step": 10,
+      "equation": "Q = 6*10^-4 * (1/sqrt(3))"
+    },
+
+    {
+      "step": 11,
+      "equation": "Q = 200*sqrt(3) cm^3/s"
+    }
+  ],
+
+  "image_template": {
+    "type": "dynamic_fluid_flow_diagram",
+
+    "objects": [
+      {
+        "object": "horizontal_pipe",
+        "properties": {
+          "sections": ["A", "B"]
+        }
+      },
+
+      {
+        "object": "vertical_water_column",
+        "properties": {
+          "connected_section": "A",
+          "height_difference": "5cm"
+        }
+      },
+
+      {
+        "object": "vertical_water_column",
+        "properties": {
+          "connected_section": "B"
+        }
+      },
+
+      {
+        "object": "flow_arrow",
+        "properties": {
+          "direction": "right"
+        }
+      },
+
+      {
+        "object": "cross_section_marker",
+        "properties": {
+          "A": "6cm^2",
+          "B": "3cm^2"
+        }
+      }
+    ]
+  },
+
+  "options": [
+    {
+      "id": "1",
+      "value": "200/sqrt(3)",
+      "is_correct": false
+    },
+
+    {
+      "id": "2",
+      "value": "200sqrt(6)",
+      "is_correct": false
+    },
+
+    {
+      "id": "3",
+      "value": "100sqrt(3)",
+      "is_correct": false
+    },
+
+    {
+      "id": "4",
+      "value": "200sqrt(3)",
+      "is_correct": true
+    }
+  ],
+
+  "answer_template": {
+    "formula": "Q = A1*sqrt((2gh)/3)",
+    "expanded_formula": "Q = 6 × 10^-4 × (1/sqrt(3))",
+    "correct_answer": "200sqrt(3) cm^3/s"
+  },
+
+  "solution_explanation": [
+    "Apply continuity equation between sections A and B.",
+    "Since A2 is half of A1, velocity at B becomes twice velocity at A.",
+    "Use Bernoulli equation for horizontal flow.",
+    "Pressure difference is related to height difference in vertical tubes.",
+    "Substitute pressure difference into Bernoulli equation.",
+    "Solve for velocity at section A.",
+    "Use Q = A*v to calculate volume flow rate.",
+    "Final flow rate becomes 200sqrt(3) cm^3/s."
+  ]
+}

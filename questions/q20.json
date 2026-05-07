@@ -1,0 +1,76 @@
+{
+  "template_id": "rotational_dynamics_rolling_sphere_external_forces",
+
+  "subject": "Physics",
+
+  "chapter": "Rotational Motion",
+
+  "concept": "Rolling Motion with External Torque",
+
+  "question_template": {
+    "text": "A solid sphere rolls without slipping down an incline of angle theta = 30 degree. Two forces of magnitude 1 N each act parallel to the incline at distance r = 0.5 m from the center. Find the acceleration of the sphere down the plane."
+  },
+
+  "sampled_variables": {
+    "m": 1,
+    "R": 1,
+    "theta": 30,
+    "g": 10,
+    "force": 1,
+    "r": 0.5,
+    "acceleration": 3
+  },
+
+  "constraints": [
+    {
+      "type": "rolling_condition",
+      "expression": "a = alpha*R"
+    },
+
+    {
+      "type": "moment_of_inertia_sphere",
+      "expression": "I = 2mR^2/5"
+    },
+
+    {
+      "type": "newton_second_law",
+      "expression": "ma = mg*sin(theta)-f"
+    },
+
+    {
+      "type": "torque_equation",
+      "expression": "fR + external_torque = I*alpha"
+    }
+  ],
+
+  "computed_equations": [
+    {
+      "step": 1,
+      "equation": "Net force along incline = mg*sin(theta)-f"
+    },
+
+    {
+      "step": 2,
+      "equation": "Torque equation applied"
+    },
+
+    {
+      "step": 3,
+      "equation": "Use rolling condition a = alpha*R"
+    },
+
+    {
+      "step": 4,
+      "equation": "Solve simultaneously"
+    },
+
+    {
+      "step": 5,
+      "equation": "a = 3 m/s^2"
+    }
+  ],
+
+  "answer_template": {
+    "correct_answer": "3 m/s^2"
+  }
+}
